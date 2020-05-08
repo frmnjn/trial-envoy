@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class Controller {
     @GetMapping
     public String hello(){
-        return "hello from server 2";
+        return "hello from server 1";
     }
 }
