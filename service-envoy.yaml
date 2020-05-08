@@ -27,7 +27,7 @@ static_resources:
             typed_config: {}
   clusters:
   - name: local_service
-    connect_timeout: 1s
+    connect_timeout: 0.25s
     type: strict_dns
     lb_policy: round_robin
     load_assignment:
