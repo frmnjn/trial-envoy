@@ -1,0 +1,13 @@
+FROM envoyproxy/envoy-alpine:v1.14.1 as final
+EXPOSE 8080
+WORKDIR /app
+RUN apk update && apk --no-cache add openjdk8 --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community && rm -rf /var/lib/apt/lists/*
+ARG DEPENDENCY=/app/target/dependency
+COPY ./target/*.jar /app/app.jar
+COPY start.sh /app/start.sh
+
+RUN chmod u+x /app/start.sh
+ENTRYPOINT /app/start.sh
+
+# Fire up our Spring Boot app by default
+# ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -Duser.timezone=Indonesia/Jakarta -jar /app.jar --spring.config.location=/data/application.yml" ]
